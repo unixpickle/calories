@@ -87,6 +87,7 @@ class App {
         const res = parseFloat(field.value);
         if (isNaN(res) || res < 0) {
             field.classList.add('invalid');
+            field.focus();
             throw new Error('You entered an invalid ' + name + '.');
         } else {
             field.classList.remove('invalid');

@@ -10,7 +10,7 @@
     </head>
     <body>
         <div id="container">
-            <table id="fields">
+            <table id="fields" cellspacing="0" cellpadding="0">
                 <tbody>
                     <tr>
                         <td>Weight:</td>
@@ -49,16 +49,20 @@
                         </td>
                     </tr>
 
-                    <tr class="table-separator">
-                        <td>Total energy expenditure:</td>
-                        <td><label id="current-tee"></label></td>
+                    <tr><td colspan="2" class="table-separator"></td></tr>
+
+                    <tr>
+                        <td>TEE:</td>
+                        <td><label id="current-tee">(Uncalculated)</label></td>
                     </tr>
                     <tr>
                         <td>BMR:</td>
-                        <td><label id="current-bmr"></label></td>
+                        <td><label id="current-bmr">(Uncalculated)</label></td>
                     </tr>
 
-                    <tr class="table-separator">
+                    <tr><td colspan="2" class="table-separator"></td></tr>
+
+                    <tr>
                         <td>Target weight:</td>
                         <td><input id="target-weight" value="130" placeholder="Weight (lbs)"></td>
                     </tr>
@@ -83,7 +87,7 @@
                     </tr>
                 </tbody>
             </table>
-            <button onClick="app.updateTables()">Update</button>
+            <button id="update-button" onClick="app.updateTables()">Update</button>
         </div>
 
         <script src="assets/js/app.js"></script>

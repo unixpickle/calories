@@ -1,3 +1,89 @@
-.invalid {
+html, body {
+    background-color: #f0f0f0;
+    font-family: sans-serif;
+}
+
+select {
+    height: 30px;
+    padding: 0 10px;
+}
+
+input {
+    width: 100px;
+    line-height: 30px;
+    padding: 0 5px;
+}
+
+input.invalid {
     border: 1px solid red;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    background-color: #65bcd4;
+    color: white;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #459cb4;
+    cursor: pointer;
+}
+
+#update-button {
+    display: block;
+    margin: 10px auto 0 auto;
+}
+
+button:focus {
+    outline: 0;
+}
+
+#container {
+    display: block;
+
+    background-color: white;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+@media (max-width: 620px) {
+    #container {
+        margin: 10px;
+    }
+}
+
+@media (min-width: 600px) {
+    #container {
+        width: 600px;
+        margin: 10px auto;
+    }
+}
+
+#fields {
+    margin: auto;
+    table-layout: fixed;
+    width: 100%;
+    border: none;
+}
+
+#fields td {
+    padding: 5px 3px;
+}
+
+#fields td:first-child {
+    text-align: right;
+    font-weight: bolder;
+}
+
+#fields td:last-child {
+    text-align: left;
+}
+
+.table-separator::after {
+    content: ' ';
+    display: block;
+    border-top: 1px solid #d5d5d5;
+    margin: 10px 0;
 }
