@@ -32,10 +32,11 @@ class App {
                 this.parseNumericField(this.heightInch, 'height (inch)')) * INCH_TO_CM;
             age = this.parseNumericField(this.age, 'age');
             pal = this.parseNumericField(this.pal, 'activity level');
-            targetWeight = this.parseNumericField(this.targetWeight, 'target weight');
-            fixedValue = this.parseNumericField(this.fixedVariable, 'fixed variable value');
+            targetWeight = this.parseNumericField(this.targetWeight, 'target weight') * POUND_TO_KG;
+            fixedValue = this.parseNumericField(this.fixedVariableValue,
+                'fixed variable value');
         } catch (e) {
-            alert(e.toString());
+            console.trace(e);
             return;
         }
         const isMale = (this.sex.value == '1');
@@ -43,13 +44,14 @@ class App {
         const bmr = new RevisedHarrisBenedictBMR(height, age, isMale);
         const tabulator = new Tabulator(weight, bmr, pal);
 
-        this.currentBmr.value = bmr.bmrForWeight(weight);
-        this.currentTee.value = bmr.bmrForWeight(weight) * pal;
-        this.solveVariables(tabulator, fixedValue);
+        this.currentBmr.textContent = Math.round(bmr.bmrForWeight(weight)) + ' Calories';
+        this.currentTee.textContent = Math.round(bmr.bmrForWeight(weight) * pal) + ' Calories';
+        this.updateVariables(tabulator, targetWeight, fixedValue);
     }
 
-    solveVariables(tabulator, targetWeight, fixedValue) {
+    updateVariables(tabulator, targetWeight, fixedValue) {
         const fv = this.fixedVariable.value;
+        this.fixedVariableValue.value = fixedValue;
         this.fixedVariableName.innerText = FIXED_VARIABLE_NAMES[fv];
         Object.keys(FIXED_VARIABLE_NAMES).forEach((name) => {
             if (name !== fv) {
@@ -57,26 +59,37 @@ class App {
             }
         });
 
-        if (fv === 'days') {
-            const days = fixedValue;
-            // TODO: binary search of some kind.
-        } else {
-            let rows = tabulator.tabulateForCalories();
+        const solution = this.solveVariable(fv, tabulator, targetWeight, fixedValue);
+        this.dynamicVariableValue.textContent = solution;
+    }
+
+    solveVariable(name, tabulator, targetWeight, fixedValue) {
+        if (name === 'days') {
+            const calories = tabulator.caloriesForTarget(targetWeight, fixedValue);
+            if (isNaN(calories)) {
+                return 'Unattainable';
+            } else {
+                return Math.round(calories) + ' Calories';
+            }
+        } else if (name === 'calories') {
+            let rows = tabulator.tabulateForCalories(fixedValue);
             for (let i = 0; i < 10000; ++i) {
-                const day = rows.next();
-                if ((day.weight < targetWeight) !== tabulator.initWeight < targetWeight) {
-                    this.dynamicVariableValue.value = i;
-                    return;
+                const day = rows.next().value;
+                if ((day.weight < targetWeight) !== (tabulator.initWeight < targetWeight)) {
+                    return i + ' days';
                 }
             }
-            this.dynamicVariableValue.value = 'cannot reach target weight';
+            return 'Unattainable';
         }
     }
 
     parseNumericField(field, name) {
-        const res = parseFloat(field);
-        if (Math.isNaN(res) || res < 0) {
+        const res = parseFloat(field.value);
+        if (isNaN(res) || res < 0) {
+            field.classList.add('invalid');
             throw new Error('You entered an invalid ' + name + '.');
+        } else {
+            field.classList.remove('invalid');
         }
         return res;
     }

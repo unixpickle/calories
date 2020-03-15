@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="assets/css/style.css" type="text/css">
         <script src="assets/js/bmr.js"></script>
         <script src="assets/js/tabulate.js"></script>
-        <script src="assets/js/app.js"></script>
     </head>
     <body>
         <div id="container">
@@ -61,21 +60,21 @@
 
                     <tr class="table-separator">
                         <td>Target weight:</td>
-                        <td><label id="target-weight"></label></td>
+                        <td><input id="target-weight" value="130" placeholder="Weight (lbs)"></td>
                     </tr>
                     <tr>
                         <td>Fixed variable:</td>
                         <td>
-                            <option id="fixed-variable" onChange="app.updateTables()">
-                                <select value="calories" selected>Daily calories</select>
-                                <select value="days">Days to reach goal</select>
-                            </option>
+                            <select id="fixed-variable" onChange="app.updateTables()">
+                                <option value="calories" selected>Daily calories</option>
+                                <option value="days">Days to reach goal</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
                         <td id="fixed-variable-name">Daily calories:</td>
                         <td>
-                            <input id="fixed-variable-value" value="0">
+                            <input id="fixed-variable-value" value="1000">
                         </td>
                     </tr>
                     <tr>
@@ -84,6 +83,9 @@
                     </tr>
                 </tbody>
             </table>
+            <button onClick="app.updateTables()">Update</button>
         </div>
+
+        <script src="assets/js/app.js"></script>
     </body>
 </html>

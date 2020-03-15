@@ -11,7 +11,7 @@ class HarrisBenedictBMR {
 
     bmrForWeight(weight) {
         const coeffs = this.coefficients();
-        return coeffs[0] + coeffs[1] * weight + coeffs[2] * this.height + coeffs[3] * this.age;
+        return coeffs[0] + coeffs[1] * weight + coeffs[2] * this.height - coeffs[3] * this.age;
     }
 
     coefficients() {
