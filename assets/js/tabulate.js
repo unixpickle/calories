@@ -35,6 +35,6 @@ class DayStats {
     }
 
     weightDelta() {
-        return (this.calories - this.tee) * CALORIES_PER_KG;
+        return (this.calories - this.tee) / CALORIES_PER_KG;
     }
 }
