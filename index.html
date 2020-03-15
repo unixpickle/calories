@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Calorie Calculator</title>
+
+        <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+        <script src="assets/js/bmr.js"></script>
+        <script src="assets/js/tabulate.js"></script>
+        <script src="assets/js/app.js"></script>
+    </head>
+    <body>
+        <div id="container">
+            <table id="fields">
+                <tbody>
+                    <tr>
+                        <td>Weight:</td>
+                        <td><input id="start-weight" placeholder="Weight (lbs)"></td>
+                    </tr>
+                    <tr>
+                        <td>Height:</td>
+                        <td>
+                            <input id="height-ft" placeholder="Feet">
+                            <input id="height-inch" placeholder="Inches">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Age:</td>
+                        <td>
+                            <input id="age" placeholder="Years">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Activity level:</td>
+                        <td>
+                            <select id="pal" onChange="app.updateTables()">
+                                <option value="1.2" selected>Low</option>
+                                <option value="1.5">Medium</option>
+                                <option value="1.9">High</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sex:</td>
+                        <td>
+                            <select id="sex" onChange="app.updateTables()">
+                                <option value="1">Male</option>
+                                <option value="0" selected>Female</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr class="table-separator">
+                        <td>Total energy expenditure:</td>
+                        <td><label id="current-tee"></label></td>
+                    </tr>
+                    <tr>
+                        <td>BMR:</td>
+                        <td><label id="current-bmr"></label></td>
+                    </tr>
+
+                    <tr class="table-separator">
+                        <td>Target weight:</td>
+                        <td><label id="target-weight"></label></td>
+                    </tr>
+                    <tr>
+                        <td>Fixed variable:</td>
+                        <td>
+                            <option id="fixed-variable" onChange="app.updateTables()">
+                                <select value="calories" selected>Daily calories</select>
+                                <select value="days">Days to reach goal</select>
+                            </option>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="fixed-variable-name">Daily calories:</td>
+                        <td>
+                            <input id="fixed-variable-value" value="0">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="dynamic-variable-name">Days to reach goal:</td>
+                        <td id="dynamic-variable-value">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

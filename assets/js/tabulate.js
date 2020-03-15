@@ -12,12 +12,20 @@ class Tabulator {
         this.pal = pal;
     }
 
-    *tabulateForCalories(calories, numDays) {
+    *tabulateForCalories(calories) {
         let current = this._createDay(this.initWeight, calories);
         while (true) {
             yield current;
             current = this._createDay(current.weight + current.weightDelta(), calories);
         }
+    }
+
+    weightAfterDays(dailyCalories, numDays) {
+        const iter = this.tabulateForCalories(dailyCalories);
+        for (let i = 0; i < numDays; i++) {
+            iter.next();
+        }
+        return iter.next().weight;
     }
 
     _createDay(weight, calories) {
