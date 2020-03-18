@@ -66,27 +66,36 @@
 
                     <tr>
                         <td>Target weight:</td>
-                        <td><input id="target-weight" value="130" placeholder="Weight (lbs)"
+                        <td><input id="target-weight-1" value="130" placeholder="Weight (lbs)"
                                    type="number"></td>
                     </tr>
                     <tr>
-                        <td>Fixed variable:</td>
+                        <td>Daily calories:</td>
                         <td>
-                            <select id="fixed-variable" onChange="app.updateTables()">
-                                <option value="calories" selected>Daily calories</option>
-                                <option value="days">Days to reach goal</option>
-                            </select>
+                            <input id="daily-calories-input" value="1000" type="number">
                         </td>
                     </tr>
                     <tr>
-                        <td id="fixed-variable-name">Daily calories:</td>
+                        <td>Days to reach goal:</td>
+                        <td id="days-output">0</td>
+                    </tr>
+
+                    <tr><td colspan="2" class="table-separator"></td></tr>
+
+                    <tr>
+                        <td>Target weight:</td>
+                        <td><input id="target-weight-2" value="130" placeholder="Weight (lbs)"
+                                   type="number"></td>
+                    </tr>
+                    <tr>
+                        <td>Days to reach goal:</td>
                         <td>
-                            <input id="fixed-variable-value" value="1000" type="number">
+                            <input id="days-input" value="1000" type="number">
                         </td>
                     </tr>
                     <tr>
-                        <td id="dynamic-variable-name">Days to reach goal:</td>
-                        <td id="dynamic-variable-value">0</td>
+                        <td>Daily calories:</td>
+                        <td id="daily-calories-output">0</td>
                     </tr>
                 </tbody>
             </table>

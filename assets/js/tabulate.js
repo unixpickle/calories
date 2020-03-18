@@ -39,7 +39,6 @@ class Tabulator {
         for (let i = 0; i < 20; ++i) {
             const mid = (min + max) / 2;
             const w = this.weightAfterDays(mid, days);
-            console.log(mid, w, 'minmax', min, max);
             if (w < targetWeight) {
                 min = mid;
             } else {
@@ -47,6 +46,17 @@ class Tabulator {
             }
         }
         return (min + max) / 2
+    }
+
+    daysForTarget(targetWeight, calories) {
+        const rows = this.tabulateForCalories(calories);
+        for (let i = 0; i < 10000; ++i) {
+            const day = rows.next().value;
+            if ((day.weight < targetWeight) !== (this.initWeight < targetWeight)) {
+                return i;
+            }
+        }
+        return NaN;
     }
 
     _createDay(weight, calories) {
