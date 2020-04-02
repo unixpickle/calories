@@ -17,7 +17,7 @@ class App {
         this.currentTee = document.getElementById('current-tee');
         this.currentBmr = document.getElementById('current-bmr');
         this.targetWeight1 = document.getElementById('target-weight-1');
-        this.targetWeight2 = document.getElementById('target-weight-1');
+        this.targetWeight2 = document.getElementById('target-weight-2');
         this.daysInput = document.getElementById('days-input');
         this.dailyCaloriesInput = document.getElementById('daily-calories-input');
         this.daysOutput = document.getElementById('days-output');
